@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: ShulkerSync
+
+  datasource:
+    url: jdbc:sqlite:shulker.db
+    driver-class-name: org.sqlite.JDBC
+
+    # 实际上 username、password字段无意义，SQLITE无用户权限管理
+    username: root
+    password: root
+
+  jpa:
+    # 使用 SQLITE 方言
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true
