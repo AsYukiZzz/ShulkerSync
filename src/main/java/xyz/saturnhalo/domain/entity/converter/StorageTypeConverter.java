@@ -1,4 +1,4 @@
-package xyz.saturnhalo.converter;
+package xyz.saturnhalo.domain.entity.converter;
 
 import jakarta.persistence.Converter;
 import xyz.saturnhalo.enums.StorageType;
