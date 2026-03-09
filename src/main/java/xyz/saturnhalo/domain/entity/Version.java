@@ -3,8 +3,6 @@ package xyz.saturnhalo.domain.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
@@ -14,6 +12,7 @@ import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import xyz.saturnhalo.anno.CustomIdPolicy;
 
 import java.time.LocalDateTime;
 
@@ -33,7 +32,7 @@ public class Version {
      * 主键 Id
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @CustomIdPolicy
     private Long id;
 
     /**
@@ -72,7 +71,7 @@ public class Version {
      * 创建时间
      */
     @CreationTimestamp
-    @Column(name = "created_at",updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     /**
