@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @Table(
         name = "versions",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"modpack_id", "version_number"})
+                @UniqueConstraint(columnNames = {"modpack_id", "modpack_version"})
         })
 public class Version {
 
@@ -44,28 +44,41 @@ public class Version {
     private Modpack modpack;
 
     /**
+     * 整合包分支信息
+     */
+    @Column(length = 50, nullable = false)
+    private String branch;
+
+    /**
      * 整合包版本号
      */
-    @Column(nullable = false, name = "version_number")
-    private String versionNumber;
+    @Column(name = "modpack_version", length = 30, nullable = false)
+    private String modpackVersion;
+
+    /**
+     * 对应游戏版本号
+     */
+    @Column(name = "minecraft_version", length = 30, nullable = false)
+    private String minecraftVersion;
 
     /**
      * 整合包版本内容信息
      */
     @Lob
-    @Column(columnDefinition = "TEXT", nullable = false, name = "manifest_json")
+    @Column(name = "manifest_json", columnDefinition = "TEXT", nullable = false)
     private String manifestJson;
 
     /**
      * 创建时间
      */
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(name = "created_at",updatable = false)
     private LocalDateTime createdAt;
 
     /**
      * 更新时间
      */
     @UpdateTimestamp
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 }
