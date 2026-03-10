@@ -1,11 +1,8 @@
 package xyz.saturnhalo.utils;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * Id 生成工具类
  */
-@Slf4j
 public class IdUtils {
 
     // 起始时间
