@@ -1,13 +1,12 @@
 package xyz.saturnhalo.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import xyz.saturnhalo.anno.CustomIdPolicy;
 
 import java.time.LocalDateTime;
 
@@ -15,45 +14,43 @@ import java.time.LocalDateTime;
  * 系统配置项 Entity
  */
 @Data
-@Entity
-@Table(name = "settings")
+@TableName(value = "settings")
 public class Setting {
 
     /**
      * 主键 Id
      */
-    @Id
-    @CustomIdPolicy
+    @TableId(type= IdType.ASSIGN_ID)
     private Long id;
 
     /**
      * 配置项键
      */
-    @Column(name = "config_key", length = 100)
+    @TableField(value = "config_key")
     private String key;
 
     /**
      * 配置项值
      */
-    @Column(name = "config_value", columnDefinition = "Text")
+    @TableField(value = "config_value")
     private String value;
 
     /**
      * 配置项描述
      */
+    @TableField(value = "description")
     private String description;
 
     /**
      * 创建时间
      */
-    @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
+    @TableField(value = "created_at", fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
     /**
      * 更新时间
      */
-    @UpdateTimestamp
-    @Column(name = "updated_at")
+    @Version
+    @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 }

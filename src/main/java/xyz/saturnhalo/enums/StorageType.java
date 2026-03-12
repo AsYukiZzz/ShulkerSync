@@ -1,5 +1,6 @@
 package xyz.saturnhalo.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;
 
 /**
@@ -23,6 +24,7 @@ public enum StorageType implements BaseEnum {
     CLOUDFLARE_R2(41, "CloudFlare R2 存储服务"),
     ALIYUN_OSS(42, "阿里云 OSS 存储服务");
 
+    @EnumValue
     private final Integer code;
     private final String displayName;
 

@@ -1,13 +1,12 @@
 package xyz.saturnhalo.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import xyz.saturnhalo.anno.CustomIdPolicy;
 import xyz.saturnhalo.enums.TaskStatus;
 import xyz.saturnhalo.enums.TaskType;
 
@@ -17,43 +16,43 @@ import java.time.LocalDateTime;
  * 任务 Entity
  */
 @Data
-@Entity
-@Table(name = "tasks")
+@TableName(value = "tasks")
 public class Task {
 
     /**
      * 主键 Id
      */
-    @Id
-    @CustomIdPolicy
+    @TableId(type= IdType.ASSIGN_ID)
     private Long id;
 
     /**
      * 任务类型
      */
+    @TableField(value = "type")
     private TaskType type;
 
     /**
      * 任务状态
      */
+    @TableField(value = "status")
     private TaskStatus status;
 
     /**
      * 任务结果
      */
+    @TableField(value = "result")
     private String result;
 
     /**
      * 创建时间
      */
-    @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
+    @TableField(value = "created_at", fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
     /**
      * 更新时间
      */
-    @UpdateTimestamp
-    @Column(name = "updated_at")
+    @Version
+    @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 }

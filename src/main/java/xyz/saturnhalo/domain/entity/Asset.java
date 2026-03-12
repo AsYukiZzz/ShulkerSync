@@ -1,12 +1,12 @@
 package xyz.saturnhalo.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import xyz.saturnhalo.enums.StorageType;
 
 import java.time.LocalDateTime;
@@ -15,52 +15,49 @@ import java.time.LocalDateTime;
  * 文件资产表
  */
 @Data
-@Entity
-@Table(name = "assets")
+@TableName(value = "assets")
 public class Asset {
 
     /**
      * 文件摘要值（使用 SHA256）
      */
-    @Id
-    @Column(length = 64, nullable = false, updatable = false)
+    @TableId(type = IdType.INPUT)
     private String hash;
 
     /**
      * 文件大小
      */
-    @Column(nullable = false)
+    @TableField(value = "size")
     private Long size;
 
     /**
      * 存储方式
      */
-    @Column(name = "storage_type")
+    @TableField(value = "storage_type")
     private StorageType storageType;
 
     /**
      * 存储路径
      */
-    @Column(name = "storage_path", length = 500)
+    @TableField(value = "storage_path")
     private String storagePath;
 
     /**
      * 引用计数
      */
-    @Column(name = "reference_count", nullable = false)
+    @TableField(value = "reference_count")
     private Integer referenceCount;
 
     /**
      * 创建时间
      */
-    @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
+    @TableField(value = "created_at", fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
     /**
      * 更新时间
      */
-    @UpdateTimestamp
-    @Column(name = "updated_at")
+    @Version
+    @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 }

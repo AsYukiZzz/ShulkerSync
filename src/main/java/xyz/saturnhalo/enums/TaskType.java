@@ -1,5 +1,6 @@
 package xyz.saturnhalo.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;
 
 /**
@@ -14,6 +15,7 @@ public enum TaskType implements BaseEnum{
             "计算文件的SHA-256哈希，去重存储并生成当前版本清单"
     );
 
+    @EnumValue
     private final Integer code;
     private final String displayName;
     private final String description;

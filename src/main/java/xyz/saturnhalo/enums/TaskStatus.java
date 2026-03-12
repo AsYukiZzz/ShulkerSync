@@ -1,5 +1,6 @@
 package xyz.saturnhalo.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;
 
 /**
@@ -12,6 +13,7 @@ public enum TaskStatus implements BaseEnum{
     SUCCESS(1, "执行成功"),
     FAILURE(2, "执行失败");
 
+    @EnumValue
     private final Integer code;
     private final String displayName;
 

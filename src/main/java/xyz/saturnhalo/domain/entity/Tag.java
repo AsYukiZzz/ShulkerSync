@@ -1,47 +1,47 @@
 package xyz.saturnhalo.domain.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
-import xyz.saturnhalo.anno.CustomIdPolicy;
 
 /**
  * 标签 Entity
  */
 @Data
-@Entity
-@Table(name = "tags")
+@TableName(value = "tags")
 public class Tag {
 
     /**
      * 主键 Id
      */
-    @Id
-    @CustomIdPolicy
+    @TableId(type= IdType.ASSIGN_ID)
     private Long id;
 
     /**
      * 父标签 Id
      */
-    @Column(name = "parent_id")
+    @TableField(value = "parent_id")
     private Long parentId;
 
     /**
      * 标签路径
      */
+    @TableField(value = "path")
     private String path;
 
     /**
      * 标签名称
      */
-    @Column(length = 50, nullable = false, unique = true)
+    @TableField(value = "name")
     private String name;
 
     /**
      * 标签颜色
      */
-    @Column(length = 7)
+    @Version
+    @TableField(value = "color")
     private String color;
 }
