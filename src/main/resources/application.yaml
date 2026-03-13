@@ -3,12 +3,20 @@ spring:
     name: ShulkerSync
 
   datasource:
-    url: jdbc:sqlite:shulker.db
-    driver-class-name: org.sqlite.JDBC
-
-    # 实际上 username、password字段无意义，SQLITE无用户权限管理
+    url: jdbc:mysql://localhost:3306/shulker_sync?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
+    password: jms20041105
+
+    type: com.zaxxer.hikari.HikariDataSource
+    # 连接池配置
+    hikari:
+      # 连接池中允许的最小空闲连接数
+      minimum-idle: 5
+      # 连接池维护的最大连接数
+      maximum-pool-size: 20
+      # 连接超时时间（毫秒）
+      connection-timeout: 30000
 
   flyway:
     enabled: true
