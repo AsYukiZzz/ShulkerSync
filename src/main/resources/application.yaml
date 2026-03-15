@@ -18,6 +18,18 @@ spring:
       # 连接超时时间（毫秒）
       connection-timeout: 30000
 
+  redis:
+    redisson:
+      config:
+        singleServerConfig:
+          address: "redis://127.0.0.1:6379"
+          database: 0
+          password: null
+        threads: 16
+        nettyThreads: 32
+        codec: !<org.redisson.codec.Kryo5Codec> {}
+        transportMode: "NIO"
+
   flyway:
     enabled: true
     locations: classpath:db/migration
