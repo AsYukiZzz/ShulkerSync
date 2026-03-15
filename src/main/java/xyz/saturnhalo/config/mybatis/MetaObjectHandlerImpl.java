@@ -21,9 +21,9 @@ public class MetaObjectHandlerImpl implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         log.debug("公共字段填充-插入，实体类: {}", metaObject.getOriginalObject().getClass().getSimpleName());
         // 创建时间
-        this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
+        this.setFieldValByName("createAt", LocalDateTime.now(), metaObject);
         // 更新时间
-        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+        this.setFieldValByName("updateAt", LocalDateTime.now(), metaObject);
     }
 
     /**
@@ -33,6 +33,6 @@ public class MetaObjectHandlerImpl implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.debug("公共字段填充-更新，实体类: {}", metaObject.getOriginalObject().getClass().getSimpleName());
         // 更新时间
-        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+        this.setFieldValByName("updateAt", LocalDateTime.now(), metaObject);
     }
 }
