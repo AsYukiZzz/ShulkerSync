@@ -43,9 +43,9 @@ CREATE INDEX idx_tag_node_path ON tag_node(path);
 
 -- 4. 创建 modpack_tag_node 表
 CREATE TABLE modpack_tag_node (
-                                  modpack_id BIGINT NOT NULL,                     -- 逻辑外键指向 modpacks.id
-                                  node_id BIGINT NOT NULL,                        -- 逻辑外键指向 tag_node.id
-                                  PRIMARY KEY (modpack_id, node_id)               -- 复合主键
+    modpack_id BIGINT NOT NULL,                     -- 逻辑外键指向 modpacks.id
+    node_id BIGINT NOT NULL,                        -- 逻辑外键指向 tag_node.id
+    PRIMARY KEY (modpack_id, node_id)               -- 复合主键
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 建立反向查询索引 (通过标签找整合包)
