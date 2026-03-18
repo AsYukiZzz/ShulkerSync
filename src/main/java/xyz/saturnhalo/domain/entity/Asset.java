@@ -57,7 +57,13 @@ public class Asset {
     /**
      * 更新时间
      */
-    @Version
     @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
+
+    /**
+     * 乐观锁版本号
+     */
+    @Version
+    @TableField(value = "version")
+    private Integer version;
 }

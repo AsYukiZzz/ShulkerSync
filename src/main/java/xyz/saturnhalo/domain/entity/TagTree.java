@@ -36,13 +36,6 @@ public class TagTree {
     private String description;
 
     /**
-     * 标签树版本号
-     */
-    @Version
-    @TableField(value = "version")
-    private Long version;
-
-    /**
      * 创建时间
      */
     @TableField(value = "created_at", fill = FieldFill.INSERT)
@@ -53,4 +46,11 @@ public class TagTree {
      */
     @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
+
+    /**
+     * 标签树版本号
+     */
+    @Version
+    @TableField(value = "version")
+    private Long version;
 }

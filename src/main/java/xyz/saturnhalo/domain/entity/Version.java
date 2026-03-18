@@ -67,7 +67,13 @@ public class Version {
     /**
      * 更新时间
      */
-    @com.baomidou.mybatisplus.annotation.Version
     @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
+
+    /**
+     * 标签树版本号
+     */
+    @com.baomidou.mybatisplus.annotation.Version
+    @TableField(value = "version")
+    private Long version;
 }
