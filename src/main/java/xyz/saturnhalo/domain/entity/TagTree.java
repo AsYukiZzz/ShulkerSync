@@ -24,18 +24,6 @@ public class TagTree {
     private Long id;
 
     /**
-     * 标签树名称
-     */
-    @TableField(value = "name")
-    private String name;
-
-    /**
-     * 标签树说明
-     */
-    @TableField(value = "description")
-    private String description;
-
-    /**
      * 创建时间
      */
     @TableField(value = "created_at", fill = FieldFill.INSERT)
