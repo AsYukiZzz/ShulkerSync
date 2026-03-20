@@ -5,7 +5,7 @@ import org.springframework.core.convert.converter.ConverterFactory;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
-import xyz.saturnhalo.enums.BaseEnum;
+import xyz.saturnhalo.domain.entity.enums.BaseEnum;
 
 import java.util.HashMap;
 import java.util.Map;

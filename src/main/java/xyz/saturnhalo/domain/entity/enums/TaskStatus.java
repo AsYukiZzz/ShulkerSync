@@ -1,4 +1,4 @@
-package xyz.saturnhalo.enums;
+package xyz.saturnhalo.domain.entity.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
  * 任务状态枚举
  */
 @AllArgsConstructor
-public enum TaskStatus implements BaseEnum{
+public enum TaskStatus implements BaseEnum {
 
     PENDING(0, "未执行"),
     SUCCESS(1, "执行成功"),

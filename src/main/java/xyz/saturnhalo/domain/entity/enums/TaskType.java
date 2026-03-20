@@ -1,4 +1,4 @@
-package xyz.saturnhalo.enums;
+package xyz.saturnhalo.domain.entity.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
  * 任务类型枚举
  */
 @AllArgsConstructor
-public enum TaskType implements BaseEnum{
+public enum TaskType implements BaseEnum {
 
     PROCESS_MODPACK(
             10,
