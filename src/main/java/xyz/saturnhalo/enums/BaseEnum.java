@@ -1,4 +1,4 @@
-package xyz.saturnhalo.domain.entity.enums;
+package xyz.saturnhalo.enums;
 
 /**
  * 自定义枚举基本接口

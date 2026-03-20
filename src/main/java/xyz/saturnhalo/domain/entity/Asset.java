@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
-import xyz.saturnhalo.domain.entity.enums.StorageType;
+import xyz.saturnhalo.enums.StorageType;
 
 import java.time.LocalDateTime;
 

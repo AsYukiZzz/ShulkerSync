@@ -1,4 +1,4 @@
-package xyz.saturnhalo.domain.entity.enums;
+package xyz.saturnhalo.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.AllArgsConstructor;

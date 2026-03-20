@@ -7,8 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
-import xyz.saturnhalo.domain.entity.enums.TaskStatus;
-import xyz.saturnhalo.domain.entity.enums.TaskType;
+import xyz.saturnhalo.enums.TaskStatus;
+import xyz.saturnhalo.enums.TaskType;
 
 import java.time.LocalDateTime;
 
