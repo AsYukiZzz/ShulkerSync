@@ -2,6 +2,7 @@ package xyz.saturnhalo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import xyz.saturnhalo.anno.MethodDescription;
 import xyz.saturnhalo.domain.dto.ChildTagCreateReq;
 import xyz.saturnhalo.domain.dto.RootTagCreateReq;
+import xyz.saturnhalo.domain.dto.TagDeleteReq;
 import xyz.saturnhalo.result.Result;
 import xyz.saturnhalo.service.TagService;
 
@@ -38,8 +40,18 @@ public class TagController {
      */
     @PostMapping("/child")
     @MethodDescription("新增子标签")
-    public Result<Void> addChildTag(@RequestBody @Validated ChildTagCreateReq req){
+    public Result<Void> addChildTag(@RequestBody @Validated ChildTagCreateReq req) {
         tagService.addChildTag(req);
+        return Result.ok();
+    }
+
+    /**
+     * 删除标签
+     */
+    @DeleteMapping
+    @MethodDescription("删除标签")
+    public Result<Void> deleteTag(@RequestBody @Validated TagDeleteReq req) {
+        tagService.removeTag(req);
         return Result.ok();
     }
 }

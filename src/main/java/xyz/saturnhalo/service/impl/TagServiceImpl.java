@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import xyz.saturnhalo.anno.DistributedLock;
 import xyz.saturnhalo.domain.dto.ChildTagCreateReq;
 import xyz.saturnhalo.domain.dto.RootTagCreateReq;
+import xyz.saturnhalo.domain.dto.TagDeleteReq;
 import xyz.saturnhalo.domain.entity.TagNode;
 import xyz.saturnhalo.domain.entity.TagTree;
 import xyz.saturnhalo.enums.LockType;
@@ -112,6 +113,48 @@ public class TagServiceImpl extends ServiceImpl<TagNodeRepository, TagNode> impl
         } catch (DataIntegrityViolationException e) {
             log.warn("子标签{}持久化失败，该层级下已存在同名标签", tagNode);
             throw new BusinessException("子标签持久化失败，该层级下已存在同名标签");
+        }
+    }
+
+    /**
+     * 删除标签
+     */
+    @Override
+    @DistributedLock(
+            key = "'lock:tags:' + #req.treeId",
+            type = LockType.WRITE
+    )
+    public void removeTag(TagDeleteReq req) {
+        log.info("开始处理标签删除请求，目标标签相关信息={}", req);
+
+        // 1. 验证并更新乐观锁版本
+        int affectRows = tagTreeRepository.casUpdateTreeVersion(req.getTreeId(), req.getVersion());
+        if (affectRows == 0) {
+            log.warn("删除标签={}失败：标签数据已过时", req);
+            throw new BusinessException("删除标签失败：标签数据已过时");
+        }
+
+        // 2. 获取标签信息
+        TagNode tagNode = tagNodeRepository.selectById(req.getId());
+        if (tagNode == null) {
+            log.warn("删除标签={}失败：目标标签不存在", req);
+            throw new BusinessException("删除标签失败：目标标签不存在");
+        }
+
+        // 3. 健壮性跨树校验
+        if (!tagNode.getTreeId().equals(req.getTreeId())) {
+            log.warn("删除标签失败：标签数据已过时，指定的标签id={}不属于对应标签树id={}", tagNode.getId(), req.getTreeId());
+            throw new BusinessException("删除标签失败：标签数据已过时");
+        }
+
+        // 3. 删除标签及其子标签
+        int deleteCount = tagNodeRepository.deleteTagsByPath(tagNode.getPath());
+        log.info("标签删除成功：共计删除了{}个标签", deleteCount);
+
+        // 4. 对根标签进行额外处理（删除标签树）
+        if (tagNode.getParentId() == -1) {
+            tagTreeRepository.deleteById(req.getTreeId());
+            log.info("根标签被删除，标签树id={}同步被删除", req.getTreeId());
         }
     }
 }
