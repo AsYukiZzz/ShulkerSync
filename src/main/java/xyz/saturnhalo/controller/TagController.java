@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import xyz.saturnhalo.anno.MethodDescription;
 import xyz.saturnhalo.domain.dto.ChildTagCreateReq;
 import xyz.saturnhalo.domain.dto.RootTagCreateReq;
 import xyz.saturnhalo.domain.dto.TagDeleteReq;
+import xyz.saturnhalo.domain.dto.TagInfoUpdateReq;
 import xyz.saturnhalo.result.Result;
 import xyz.saturnhalo.service.TagService;
 
@@ -52,6 +54,16 @@ public class TagController {
     @MethodDescription("删除标签")
     public Result<Void> deleteTag(@RequestBody @Validated TagDeleteReq req) {
         tagService.removeTag(req);
+        return Result.ok();
+    }
+
+    /**
+     * 修改标签(自身)
+     */
+    @PutMapping
+    @MethodDescription("修改标签(自身)")
+    public Result<Void> updateTag(@RequestBody @Validated TagInfoUpdateReq req){
+        tagService.updateTagInfo(req);
         return Result.ok();
     }
 }

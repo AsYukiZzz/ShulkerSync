@@ -8,24 +8,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 子标签创建请求
+ * 标签修改请求z
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChildTagCreateReq {
+public class TagInfoUpdateReq {
 
     /**
-     * 父标签 Id
+     * 标签 ID
      */
-    @NotEmpty(message = "父标签 Id 不能为空")
-    private Long parentId;
-
-    /**
-     * 标签树 Id
-     */
-    @NotEmpty(message = "标签树 Id 不能为空")
-    private Long treeId;
+    @NotEmpty(message = "标签 Id 不能为空")
+    private Long id;
 
     /**
      * 标签名称
@@ -37,12 +31,13 @@ public class ChildTagCreateReq {
     /**
      * 标签颜色
      */
+    @NotBlank(message = "标签颜色去除空格后内容不应为空")
     @Size(max = 7, message = "标签颜色长度不符合预设要求")
     private String color;
 
     /**
-     * 标签树版本号
+     * 标签自身版本号
      */
-    @NotEmpty(message = "标签树版本号不能为空")
+    @NotEmpty(message = "标签版本号不能为空")
     private Long version;
 }

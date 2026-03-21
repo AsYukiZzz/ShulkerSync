@@ -29,5 +29,5 @@ public class TagDeleteReq {
      * 标签树版本号
      */
     @NotEmpty(message = "标签树版本号不能为空")
-    private Integer version;
+    private Long version;
 }

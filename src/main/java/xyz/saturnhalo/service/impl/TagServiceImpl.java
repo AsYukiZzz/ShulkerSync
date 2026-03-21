@@ -10,6 +10,7 @@ import xyz.saturnhalo.anno.DistributedLock;
 import xyz.saturnhalo.domain.dto.ChildTagCreateReq;
 import xyz.saturnhalo.domain.dto.RootTagCreateReq;
 import xyz.saturnhalo.domain.dto.TagDeleteReq;
+import xyz.saturnhalo.domain.dto.TagInfoUpdateReq;
 import xyz.saturnhalo.domain.entity.TagNode;
 import xyz.saturnhalo.domain.entity.TagTree;
 import xyz.saturnhalo.enums.LockType;
@@ -155,6 +156,34 @@ public class TagServiceImpl extends ServiceImpl<TagNodeRepository, TagNode> impl
         if (tagNode.getParentId() == -1) {
             tagTreeRepository.deleteById(req.getTreeId());
             log.info("根标签被删除，标签树id={}同步被删除", req.getTreeId());
+        }
+    }
+
+    /**
+     * 修改标签(自身)
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateTagInfo(TagInfoUpdateReq req) {
+        log.info("开始处理标签信息修改请求，修改请求信息={}", req);
+
+        // 1. 对象转换
+        TagNode tagNode = tagMapper.toTagNode(req);
+
+        try {
+            // 2. 持久化标签信息更改
+            boolean success = this.updateById(tagNode);
+
+            if (!success) {
+                // 未通过乐观锁
+                log.warn("更新标签(id={})信息失败：标签自身数据已过时", req.getId());
+                throw new BusinessException("该标签信息已被他人修改，请刷新页面后重试");
+            }
+            log.info("标签信息更改成功，标签ID={}", tagNode.getId());
+
+        } catch (DataIntegrityViolationException e) {
+            log.warn("标签信息更改失败，该层级下已存在同名标签", e);
+            throw new BusinessException("当前层级下已存在同名标签，请更换名称");
         }
     }
 }

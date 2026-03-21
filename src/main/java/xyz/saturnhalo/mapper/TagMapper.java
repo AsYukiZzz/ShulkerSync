@@ -3,6 +3,7 @@ package xyz.saturnhalo.mapper;
 import org.mapstruct.Mapper;
 import xyz.saturnhalo.domain.dto.ChildTagCreateReq;
 import xyz.saturnhalo.domain.dto.RootTagCreateReq;
+import xyz.saturnhalo.domain.dto.TagInfoUpdateReq;
 import xyz.saturnhalo.domain.entity.TagNode;
 
 /**
@@ -20,4 +21,9 @@ public interface TagMapper {
      * ChildTagCreateReq(DTO) -> TagNode(Entity)
      */
     TagNode toTagNode(ChildTagCreateReq req);
+
+    /**
+     * TagInfoUpdateReq(DTO) -> TagNode(Entity)
+     */
+    TagNode toTagNode(TagInfoUpdateReq req);
 }
