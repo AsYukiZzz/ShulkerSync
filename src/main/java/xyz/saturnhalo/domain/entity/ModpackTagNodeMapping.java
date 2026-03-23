@@ -3,6 +3,7 @@ package xyz.saturnhalo.domain.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,10 +11,17 @@ import lombok.NoArgsConstructor;
  * 整合包与标签节点关联 Entity
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName(value = "modpack_tag_node")
 public class ModpackTagNodeMapping {
+
+    /**
+     * 主键 Id
+     */
+    @TableField(value = "id")
+    private Long id;
 
     /**
      * 整合包 Id
