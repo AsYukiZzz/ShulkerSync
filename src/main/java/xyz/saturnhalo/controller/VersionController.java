@@ -53,7 +53,7 @@ public class VersionController {
     }
 
     /**
-     * 合并分片与发布版本
+     * 合并分片文件
      */
     @PostMapping("/upload/merge")
     public Result<MergeResult> uploadMerge(
