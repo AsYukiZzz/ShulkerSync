@@ -2,6 +2,9 @@ spring:
   application:
     name: ShulkerSync
 
+  storage:
+    base-dir: /data/shulker_sync
+
   datasource:
     url: jdbc:mysql://localhost:3306/shulker_sync?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
