@@ -19,26 +19,26 @@ public class Version {
     /**
      * 主键 Id
      */
-    @TableId(type= IdType.ASSIGN_ID)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
-     * 整合包项目ID
+     * 整合包 ID
      */
     @TableField(value = "modpack_id")
     private Long modpackId;
 
     /**
-     * 整合包项目信息
-     */
-    @TableField(exist = false)
-    private Modpack modpack;
-
-    /**
-     * 整合包分支信息
+     * 整合包分支
      */
     @TableField(value = "branch")
     private String branch;
+
+    /**
+     * 版本发行说明
+     */
+    @TableField(value = "desc")
+    private String desc;
 
     /**
      * 整合包版本号
@@ -53,7 +53,7 @@ public class Version {
     private String minecraftVersion;
 
     /**
-     * 整合包版本内容信息
+     * 整合包文件清单
      */
     @TableField(value = "manifest_json")
     private String manifestJson;
