@@ -1,3 +1,7 @@
+shulkersync:
+  storage:
+    base-dir: /data/shulker_sync
+
 spring:
   application:
     name: ShulkerSync
