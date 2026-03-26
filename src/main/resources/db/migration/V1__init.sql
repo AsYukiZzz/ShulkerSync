@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS versions (
     minecraft_version VARCHAR(30) NOT NULL,         -- 游戏版本号
     manifest_json JSON NOT NULL,                    -- 版本清单文件
     description VARCHAR(500),                       -- 版本描述/更新日志
+    status INTEGER NOT NULL,                        -- 版本发布状态
     version BIGINT NOT NULL DEFAULT 0,              -- 乐观锁版本号
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,

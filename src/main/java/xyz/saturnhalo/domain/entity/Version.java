@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import xyz.saturnhalo.domain.entity.enums.VersionStatus;
 
 import java.time.LocalDateTime;
 
@@ -33,6 +34,12 @@ public class Version {
      */
     @TableField(value = "branch")
     private String branch;
+
+    /**
+     * 版本发行状态
+     */
+    @TableField(value = "status")
+    private VersionStatus status;
 
     /**
      * 版本发行说明
