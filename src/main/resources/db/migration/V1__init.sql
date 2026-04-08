@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS versions (
     minecraft_version VARCHAR(30) NOT NULL,         -- 游戏版本号
     manifest_json JSON NOT NULL,                    -- 版本清单文件
     description VARCHAR(500),                       -- 版本描述/更新日志
-    status INTEGER NOT NULL,                        -- 版本发布状态
+    status INTEGER NOT NULL,                        -- 版本状态（枚举类型：如草稿、已发布等，业务层强制赋值）
     version BIGINT NOT NULL DEFAULT 0,              -- 乐观锁版本号
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
@@ -78,6 +78,7 @@ CREATE TABLE IF NOT EXISTS versions (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_versions_modpack_branch ON versions(modpack_id, branch);
+CREATE INDEX idx_versions_status ON versions(status);
 
 
 -- 6. 创建文件资产表
@@ -100,14 +101,15 @@ CREATE TABLE IF NOT EXISTS tasks (
     id VARCHAR(36) PRIMARY KEY,
     type INTEGER NOT NULL,                          -- 异步任务类型（枚举）
     status INTEGER NOT NULL,                        -- 异步任务状态（枚举）
-    progress INTEGER NOT NULL DEFAULT 0,            -- 任务进度
-    result JSON,                                    -- 执行结果
+    priority INTEGER NOT NULL,                      -- 任务优先级
+    context JSON,                                   -- 任务执行上下文参数及相关数据
     version BIGINT NOT NULL DEFAULT 0,              -- 乐观锁版本号
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_tasks_status ON tasks(status);
+CREATE INDEX idx_tasks_priority ON tasks(priority);
 
 
 -- 8. 创建系统配置表

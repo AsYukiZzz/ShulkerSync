@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Data;
 import xyz.saturnhalo.domain.entity.enums.TaskStatus;
 import xyz.saturnhalo.domain.entity.enums.TaskType;
+import xyz.saturnhalo.domain.entity.enums.TaskPriority;
 
 import java.time.LocalDateTime;
 
@@ -38,10 +39,16 @@ public class Task {
     private TaskStatus status;
 
     /**
-     * 任务结果
+     * 任务优先级
      */
-    @TableField(value = "result")
-    private String result;
+    @TableField(value = "priority")
+    private TaskPriority priority;
+
+    /**
+     * 上下文对象
+     */
+    @TableField(value = "context")
+    private String context;
 
     /**
      * 创建时间
