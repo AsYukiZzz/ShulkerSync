@@ -103,6 +103,9 @@ CREATE TABLE IF NOT EXISTS tasks (
     status INTEGER NOT NULL,                        -- 异步任务状态（枚举）
     priority INTEGER NOT NULL,                      -- 任务优先级
     context JSON,                                   -- 任务执行上下文参数及相关数据
+    result_data JSON,                               -- 任务执行结果
+    error_msg VARCHAR(100),                         -- 任务失败原因及异常堆栈
+    trace_id VARCHAR(100),                          -- 日志追踪信息 (Trace ID)
     version BIGINT NOT NULL DEFAULT 0,              -- 乐观锁版本号
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL
@@ -110,6 +113,7 @@ CREATE TABLE IF NOT EXISTS tasks (
 
 CREATE INDEX idx_tasks_status ON tasks(status);
 CREATE INDEX idx_tasks_priority ON tasks(priority);
+CREATE INDEX idx_tasks_trace_id ON tasks(trace_id);
 
 
 -- 8. 创建系统配置表

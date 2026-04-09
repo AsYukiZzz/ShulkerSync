@@ -51,6 +51,24 @@ public class Task {
     private String context;
 
     /**
+     * 任务执行结果
+     */
+    @TableField(value = "result_data")
+    private String resultData;
+
+    /**
+     * 任务失败原因
+     */
+    @TableField(value = "error_msg")
+    private String errorMsg;
+
+    /**
+     * 日志追踪信息
+     */
+    @TableField(value = "trace_id")
+    private String traceId;
+
+    /**
      * 创建时间
      */
     @TableField(value = "created_at", fill = FieldFill.INSERT)
