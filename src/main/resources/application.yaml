@@ -6,6 +6,9 @@ spring:
   application:
     name: ShulkerSync
 
+  config:
+    import: optional:file:${shulkersync.storage.base-dir}/config/shulkersync-rules.yaml
+
   datasource:
     url: jdbc:mysql://localhost:3306/shulker_sync?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver

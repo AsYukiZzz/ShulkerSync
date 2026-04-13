@@ -1,0 +1,3 @@
+shulkersync:
+  storage:
+    active-strategy: local
