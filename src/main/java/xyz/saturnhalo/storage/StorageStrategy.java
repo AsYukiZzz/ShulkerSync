@@ -1,4 +1,4 @@
-package xyz.saturnhalo.strategy;
+package xyz.saturnhalo.storage;
 
 import java.io.InputStream;
 

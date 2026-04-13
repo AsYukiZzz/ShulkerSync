@@ -1,4 +1,4 @@
-package xyz.saturnhalo.strategy.impl;
+package xyz.saturnhalo.storage.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import xyz.saturnhalo.exception.BusinessException;
 import xyz.saturnhalo.properties.StorageProps;
-import xyz.saturnhalo.strategy.StorageStrategy;
+import xyz.saturnhalo.storage.StorageStrategy;
 
 import java.io.IOException;
 import java.io.InputStream;
